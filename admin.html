@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TinyShop — Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">TinyShop Admin</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="admin.html" aria-current="page">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin">
+    <section class="card">
+      <h3>Product Form</h3>
+      <form id="productForm" autocomplete="off">
+        <input type="hidden" id="productId" />
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input id="name" type="text" required placeholder="e.g., Minimal Mug" />
+        </div>
+        <div class="form-row">
+          <label for="price">Price (MYR)</label>
+          <input id="price" type="number" step="0.01" min="0" required placeholder="e.g., 39.90" />
+        </div>
+        <div class="form-row">
+          <label for="image">Image URL</label>
+          <input id="image" type="url" required placeholder="https://..." />
+        </div>
+        <div class="form-row">
+          <label for="description">Description</label>
+          <textarea id="description" rows="3" placeholder="Short description"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn" type="reset" id="resetBtn">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="admin-head">
+        <h3>Existing Products</h3>
+        <button class="btn btn-danger" id="wipeAll">Delete All</button>
+      </div>
+      <div class="table-wrap">
+        <table class="table" id="adminTable" aria-describedby="admin table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price (MYR)</th>
+              <th>Preview</th>
+              <th>Description</th>
+              <th style="width:140px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> TinyShop Admin</small>
+    </div>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>
