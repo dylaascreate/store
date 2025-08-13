@@ -17,6 +17,7 @@ function seedIfEmpty() {
       name: "Minimal Mug",
       price: 39.9,
       image: "https://picsum.photos/seed/mug/600/400",
+      url: "https://example.com/products/minimal-mug",            // NEW
       description: "Stoneware mug with a matte finish."
     },
     {
@@ -24,6 +25,7 @@ function seedIfEmpty() {
       name: "Canvas Tote",
       price: 59.0,
       image: "https://picsum.photos/seed/tote/600/400",
+      url: "https://example.com/products/canvas-tote",            // NEW
       description: "Reusable everyday tote with reinforced handles."
     },
     {
@@ -31,6 +33,7 @@ function seedIfEmpty() {
       name: "Desk Lamp",
       price: 129.0,
       image: "https://picsum.photos/seed/lamp/600/400",
+      url: "https://example.com/products/desk-lamp",              // NEW
       description: "Adjustable lamp for cozy workspace lighting."
     }
   ];
@@ -39,6 +42,13 @@ function seedIfEmpty() {
 
 // ---- UI render ----
 function money(n){ return new Intl.NumberFormat('en-MY', {style:'currency', currency:'MYR'}).format(n); }
+
+function handleBuynow(p){
+  const ok = confirm(`Whatsapp admin for "${p.name}"?\n\nURL: ${p.url}`);
+  if (ok) {
+    window.location.href = p.url;
+  }
+}
 
 function renderGrid() {
   const grid = document.getElementById("productGrid");
@@ -53,11 +63,12 @@ function renderGrid() {
     <article class="card product" aria-label="${p.name}">
       <img src="${p.image}" alt="${p.name}" />
       <div class="meta">
-        <strong>${p.name}</strong>
+        <strong>${p.name}</strong><br>
         <span class="price">${money(p.price)}</span>
       </div>
       <p class="muted">${p.description ?? ""}</p>
-      <button class="btn btn-primary" onclick="alert('Pretend added to cart: ${p.name}')">Add to Cart</button>
+      <!-- UPDATED: confirm + redirect to specific product URL -->
+      <button class="btn btn-primary" onclick='handleBuynow(${JSON.stringify(p)})'>Buy Now</button>
     </article>
   `).join("");
 }
@@ -65,5 +76,6 @@ function renderGrid() {
 (function init(){
   document.getElementById("year").textContent = new Date().getFullYear();
   seedIfEmpty();
+  window.handleBuynow = handleBuynow; // expose for inline onclick
   renderGrid();
 })();

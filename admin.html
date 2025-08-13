@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TinyShop — Admin</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/3.png">
+  <title>DevNex — Admin</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <h1 class="logo">TinyShop Admin</h1>
+      <h1 class="logo">
+        <a href="index.html" class="logo-link">
+          <img src="./img/3.png" alt="DevNex Tech" />
+          <span class="logo-text">DevNex Admin</span>
+        </a>
+      </h1>
       <nav>
         <a href="index.html">Home</a>
         <a href="admin.html" aria-current="page">Admin</a>
@@ -33,6 +40,10 @@
         <div class="form-row">
           <label for="image">Image URL</label>
           <input id="image" type="url" required placeholder="https://..." />
+        </div>
+          <div class="form-row">
+          <label for="url">Product URL</label>
+          <input id="url" type="url" required placeholder="https://..." />
         </div>
         <div class="form-row">
           <label for="description">Description</label>
@@ -69,7 +80,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <small>© <span id="year"></span> TinyShop Admin</small>
+      <small>© <span id="year"></span> DevNex Admin</small>
     </div>
   </footer>
 
