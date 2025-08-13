@@ -16,6 +16,7 @@ const els = {
   name: null,
   price: null,
   image: null,
+  url: null,            // NEW
   description: null,
   tbody: null,
   resetBtn: null,
@@ -27,12 +28,17 @@ function fillForm(p){
   els.name.value = p?.name || "";
   els.price.value = p?.price ?? "";
   els.image.value = p?.image || "";
+  els.url.value = p?.url || "";            // NEW
   els.description.value = p?.description || "";
   els.name.focus();
 }
 
 function clearForm(){
   fillForm(null);
+}
+
+function isValidUrl(str){
+  try { new URL(str); return true; } catch { return false; }
 }
 
 function upsertProduct(e){
@@ -43,13 +49,18 @@ function upsertProduct(e){
     name: els.name.value.trim(),
     price: parseFloat(els.price.value || "0"),
     image: els.image.value.trim(),
+    url: els.url.value.trim(),             // NEW
     description: els.description.value.trim()
   };
 
-  if (!product.name || !product.image || isNaN(product.price)) {
-    alert("Please fill in Name, valid Price, and Image URL.");
+  if (!product.name || !product.image || isNaN(product.price) || !product.url) {
+    alert("Please fill in Name, valid Price, Image URL, and Product URL.");
     return;
-    }
+  }
+  if (!isValidUrl(product.image) || !isValidUrl(product.url)) {
+    alert("Please enter valid URLs for Image and Product URL.");
+    return;
+  }
 
   const list = getProducts();
   const idx = list.findIndex(p => p.id === id);
@@ -80,6 +91,22 @@ function renderTable(){
       <td><img src="${p.image}" alt="${p.name}"/></td>
       <td class="muted">${p.description ?? ""}</td>
       <td>
+        <a
+          href="${p.url}"
+          class="icon-btn"
+          target="_blank"
+          rel="noopener"
+          title="Open URL"
+          aria-label="Open URL"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <!-- simple "open in new" icon -->
+            <path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.6 5H14V3z"/>
+            <path fill="currentColor" d="M5 5h7v2H7v10h10v-5h2v7H5z"/>
+          </svg>
+        </a>
+      </td>
+      <td>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-primary" onclick="onEdit('${p.id}')">Edit</button>
           <button class="btn btn-danger" onclick="onDelete('${p.id}')">Delete</button>
@@ -96,6 +123,7 @@ function renderTable(){
   els.name = document.getElementById("name");
   els.price = document.getElementById("price");
   els.image = document.getElementById("image");
+  els.url = document.getElementById("url");               // NEW
   els.description = document.getElementById("description");
   els.tbody = document.getElementById("adminTbody");
   els.resetBtn = document.getElementById("resetBtn");

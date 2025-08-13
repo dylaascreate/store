@@ -1,10 +1,11 @@
 :root{
-  --bg:#0b0c10;
+  /* --bg:#0b0c10; */
+  --bg:#05070d;
   --card:#111217;
   --muted:#8b90a0;
   --text:#eef0f5;
   --brand:#5b8cff;
-  --brand-2:#66e5b3;
+  --brand-2:#00afba;
   --danger:#ff6b6b;
   --ring: 0 0 0 3px rgba(91,140,255,.25);
 }
@@ -13,12 +14,42 @@
 html,body{margin:0;padding:0}
 body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: radial-gradient(1200px 600px at 10% -20%, rgba(102,229,179, .15), transparent 50%),
-              radial-gradient(1000px 700px at 100% 20%, rgba(91,140,255, .12), transparent 50%),
-              var(--bg);
+  background:
+    /* top-left rich blue glow */
+    radial-gradient(1200px 700px at 12% -8%, rgba(80,120,255,.18), transparent 65%),
+    /* top-right mint-blue glow */
+    radial-gradient(1100px 650px at 90% 5%, rgba(106, 102, 229, 0.14), transparent 62%),
+    /* bottom-left secondary blue */
+    radial-gradient(900px 600px at 25% 85%, rgba(80,120,255,.12), transparent 60%),
+    /* bottom-right mint echo */
+    radial-gradient(800px 520px at 85% 80%, rgba(121, 102, 229, 0.1), transparent 58%),
+    /* subtle vertical sheen */
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 35%),
+    /* faint center focus */
+    radial-gradient(600px 380px at 50% 45%, rgba(120,160,255,.07), transparent 70%),
+    var(--bg);
   color: var(--text);
-  line-height:1.5;
+  line-height: 1.5;
 }
+
+/* Logo with image */
+.logo { margin: 5; font-size: 2rem; }
+.logo-link { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; color: inherit; }
+.logo img { height: 30px; width: auto; display: block; }
+.logo-text { line-height: 2; }
+
+/* If the image fails to load, keep spacing consistent */
+.logo img[alt] { font-size: 0; }
+
+.icon-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:10px;
+  background:#232634; border:1px solid #2a2e3d; color:var(--text);
+}
+.icon-btn:hover{ filter:brightness(1.08); }
+.icon-btn:focus{ outline:none; box-shadow:var(--ring); }
+
+.icon{ width:18px; height:18px; display:block; }
 
 .container{width:min(1100px, 92%); margin-inline:auto}
 
