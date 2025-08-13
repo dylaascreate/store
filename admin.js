@@ -1,4 +1,4 @@
-const LS_KEY = "tinyshop_products";
+const LS_KEY = "devnex_products";
 
 function getProducts() {
   const raw = localStorage.getItem(LS_KEY);
