@@ -8,37 +8,37 @@ function getProducts() {
 function saveProducts(list) {
   localStorage.setItem(LS_KEY, JSON.stringify(list));
 }
-function seedIfEmpty() {
-  const existing = getProducts();
-  if (existing.length) return;
-  const seed = [
-    {
-      id: crypto.randomUUID(),
-      name: "Minimal Mug",
-      price: 39.9,
-      image: "https://picsum.photos/seed/mug/600/400",
-      url: "https://example.com/products/minimal-mug",            // NEW
-      description: "Stoneware mug with a matte finish."
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Canvas Tote",
-      price: 59.0,
-      image: "https://picsum.photos/seed/tote/600/400",
-      url: "https://example.com/products/canvas-tote",            // NEW
-      description: "Reusable everyday tote with reinforced handles."
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Desk Lamp",
-      price: 129.0,
-      image: "https://picsum.photos/seed/lamp/600/400",
-      url: "https://example.com/products/desk-lamp",              // NEW
-      description: "Adjustable lamp for cozy workspace lighting."
-    }
-  ];
-  saveProducts(seed);
-}
+// function seedIfEmpty() {
+//   const existing = getProducts();
+//   if (existing.length) return;
+//   const seed = [
+//     {
+//       id: crypto.randomUUID(),
+//       name: "Minimal Mug",
+//       price: 39.9,
+//       image: "https://picsum.photos/seed/mug/600/400",
+//       url: "https://example.com/products/minimal-mug",            // NEW
+//       description: "Stoneware mug with a matte finish."
+//     },
+//     {
+//       id: crypto.randomUUID(),
+//       name: "Canvas Tote",
+//       price: 59.0,
+//       image: "https://picsum.photos/seed/tote/600/400",
+//       url: "https://example.com/products/canvas-tote",            // NEW
+//       description: "Reusable everyday tote with reinforced handles."
+//     },
+//     {
+//       id: crypto.randomUUID(),
+//       name: "Desk Lamp",
+//       price: 129.0,
+//       image: "https://picsum.photos/seed/lamp/600/400",
+//       url: "https://example.com/products/desk-lamp",              // NEW
+//       description: "Adjustable lamp for cozy workspace lighting."
+//     }
+//   ];
+//   saveProducts(seed);
+// }
 
 // ---- UI render ----
 function money(n){ return new Intl.NumberFormat('en-MY', {style:'currency', currency:'MYR'}).format(n); }
